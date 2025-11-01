@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://i.ibb.co/6FqvJv1/fullstack-banner-github.png" alt="Full Stack Developer Banner" width="100%" /> </p> <h1 align="center">🌍 My Full Stack Development Journey</h1> <p align="center"> <img src="https://img.shields.io/badge/Full%20Stack%20Developer-⚡-brightgreen?style=for-the-badge" /> <img src="https://img.shields.io/badge/Open%20Source%20💖-Friendly-blueviolet?style=for-the-badge" /> <img src="https://img.shields.io/badge/Made%20With-JavaScript-yellow?style=for-the-badge" /> <img src="https://img.shields.io/badge/Deployed%20On-AWS%20☁️-orange?style=for-the-badge" /> </p>
+<<h1 align="center">🌍 My Full Stack Development Journey</h1> <p align="center"> 
 <p align="center"><i>“Every line of code tells a story — of growth, curiosity, and endless creation.”</i></p>
 👋 Welcome
 
