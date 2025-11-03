@@ -1,0 +1,72 @@
+/* Universal Selector */
+/* *{
+    background-color:cyan;
+} */
+
+body{
+    background-color:#f1faee
+}
+
+
+/* Element Selector */
+button{
+    font-size:30px;
+    background-color: #a8daa8
+}
+
+/* Selector List */
+h1,h2{
+    color:darkslateblue;
+}
+
+/* ID Selector */
+#signup{
+    background-color:#1d3557;
+    color:#f1faee;
+}
+
+/* Class Selector */
+span{
+    color:#457b9d
+}
+
+.tag{
+    background-color: #e63946;
+    color: #f1faee;
+    font-size: 16px;
+}
+
+/* Descendant Selector */
+.post a{
+    color:#457b9d;
+}
+
+footer a{
+    color: #e63946;
+}
+/* Adjacent Selector:- Select only the paragraphs that are immediately preceded by an <h1> */
+input + button{
+    background-color: pink;
+}
+
+h2 + button{
+    font-size: 20px;
+}
+/* Diect Child:- Select only the a that is direct children of footer tag and not nav tag */
+footer > a{
+    color: #457b9d
+}
+
+/* Attribute selector */
+input[type="password"]{
+    color: greenyellow;
+}
+
+section.post{
+    background-color: purple;
+}
+
+a[href*="google"]{
+    color: magenta;
+}
+

@@ -1,0 +1,32 @@
+h3{
+    color: #5FCFFC;
+    background-color: rgb(89, 151, 0);
+}
+
+p{
+    color:olive;
+    background: orange;
+}
+
+button{
+    color:magenta;
+    background-color: cyan;
+}
+
+h4{
+    color: rgb(255,0,0);
+    color: rgb(0,0,0);
+    color: rgb(255,255,0);
+    color: rgb(255,255,255);
+    
+}
+
+body{
+    background-color: #000;
+}
+/*Named colors have limited set. 
+To counter this we have:-
+1. RGB Colors
+2. Hexadecimal
+
+*/
