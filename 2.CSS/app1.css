@@ -39,6 +39,8 @@ span{
 /* Descendant Selector */
 .post a{
     color:#457b9d;
+    text-decoration: none;
+    font-weight: 700;
 }
 
 footer a{
@@ -62,11 +64,54 @@ input[type="password"]{
     color: greenyellow;
 }
 
-section.post{
+/* section.post{
     background-color: purple;
-}
+} */
 
 a[href*="google"]{
     color: magenta;
 }
 
+/* Hover */
+button:hover{
+    background-color: #e63946;
+    color: #f1faee;
+}
+
+.post button:hover{
+    background-color: #e63946;
+    color: #f1faee;
+}
+
+.post a:hover{
+    text-decoration: underline;
+}
+/* Active */
+.post button:active{
+    background-color: #02c39a;
+}
+
+/* nth-of-type:- Provides color to the 3rd element with the id post */
+/* .post:nth-of-type(3){
+    background-color: #dfe8dc;
+} */
+
+/* Provides color to every 2n (applies color 2n times) elements to with the id post in the section */
+post:nth-of-type(2n){
+    background-color: #dfe8dc;
+}
+
+/* First-letter:- Changes the property of the first letter */
+h2::first-letter{
+    font-size: 50px;
+}
+
+/* First line:- Changes the property of p in the first line */
+p::first-line{
+    color:purple;
+}
+
+/* Selection:- Changes color after selecting paragraph */
+p::selection{
+    background-color: #fcbf49;
+}

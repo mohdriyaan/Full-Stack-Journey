@@ -1,0 +1,21 @@
+/* All the elements inherits the color of aquamarine due to style being applied to the body */
+body{
+    background-color: aquamarine;
+}
+
+h1{
+    color:blue
+}
+
+/* p inherits color teal */
+section{
+    color: teal;
+}
+
+form{
+    color: greenyellow;
+}
+/* Inherits the property of thee nearest parent */
+button,input{
+    color:inherit
+}
