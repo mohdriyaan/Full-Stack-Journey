@@ -15,6 +15,7 @@ section{
 form{
     color: greenyellow;
 }
+
 /* Inherits the property of thee nearest parent */
 button,input{
     color:inherit

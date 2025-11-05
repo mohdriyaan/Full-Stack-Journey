@@ -1,0 +1,30 @@
+h1{
+    background-color: palegoldenrod;
+    border: 1px solid black;
+    display: inline;
+    width: 300px;
+    padding: 50px;
+    margin: 50px;
+}
+
+span{
+ /* background-color: aquamarine;
+ border: 1px solid black;
+ display: block;
+ */
+ background-color: violet;
+ border: 1px solid black;
+ display: block;
+ width: 500px; /*Overlaps the size of an element*/
+ padding: 50px;
+ margin: 50px;
+} 
+
+div{
+    height: 200px;
+    width: 200px;
+    border: 5px solid black;
+    background-color: olivedrab;
+    display: inline-block;
+    margin: 50px;
+}
