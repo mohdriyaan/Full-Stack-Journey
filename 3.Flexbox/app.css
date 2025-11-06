@@ -1,0 +1,71 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+h1, h2{
+    text-align: center;
+}
+#container {
+    background-color: #003049;
+    width: 90%;
+    /* height: 500px; */
+    margin: 0 auto;
+    border: 5px solid #003049;
+    display: flex;
+    /* Default direction */
+    flex-direction: row; /*arranges elements/content along main axis/horizontally.*/
+    /* flex-direction: row-reverse; /*opposite direction*/
+    /* flex-direction: column /* arranges the elements in the column order/cross axis*/ 
+    /* flex-direction: column-reverse /* arranges the elements in the reverse column order*/ 
+    /* justify-content: flex-start;  // default */
+    /* justify-content: flex-end;  // moves the content towards the end of the box */
+    /* justify-content:space-between; // distributes content evenly between elements */
+    /* justify-content:space-evenly; // provides even space between elements */
+    /* justify-content:space-around */
+    justify-content: center; /*centers the content along the main axis*/
+    /* flex-wrap: wrap; By default, Flexbox tries to fit all items on a single line — even if they overflow the container.
+    The flex-wrap property controls whether flex items stay on one line or wrap onto multiple lines. */
+    /* flex-wrap: wrap-reverse; wraps the elements in reverse */
+    /* align-items: flex-start; aligns the items according to cross axis */
+    /* align-items: center */
+    /* align-items:baseline; */
+}
+
+#container div {
+    width: 200px;
+    height: 200px;
+    /* max-width: 300px; */
+    text-align:center;
+    /* defines the initial size of an element before additional space is distributed and width:200px gets ignored. */
+    flex-basis: 600px;
+}
+
+div:nth-of-type(1) {
+    /* align-self: center; aligns individual element at center along cross axis */
+    /* flex-grow controls the amount of available space an element should take up. */
+    flex-grow: 1;
+    /* flex-shrink:- if items are larger than container, they shrink according to flex-shrink. */
+    flex-shrink:2;
+}
+div:nth-of-type(5) {
+    flex-grow: 2;
+}
+
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    border: 5px solid black;
+    height: 500px;
+    display: flex;
+}
+main .sidebar {
+    background-color: #6930c3;
+    /* shorthand property: flex : flex-grow | flex-shrink | flex-basis */
+    flex:1 2 300px;
+}
+main .maincontent {
+    background-color: #80ffdb;
+    flex: 2 1 800px;
+}
+
+
