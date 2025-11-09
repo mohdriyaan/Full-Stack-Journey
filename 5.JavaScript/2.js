@@ -10,11 +10,13 @@ Or change it to later one.
 // let someName = value;
 let year = 1985;
 
+// let defines value only one and reassign value multiple times
+
 // Recall Values
 let num = 5
 let num1 = 1
-num+num1
-num + 8
+console.log(num+num1)
+console.log(num + 8)
 let totalNum = num+ num1
 console.log(totalNum)
 
@@ -60,3 +62,10 @@ const a = 10;
 console.log(a)
 a++;
 console.log(a) // Error
+
+// var :- old variable keyword, before let and const. var redefines and reassign
+var day = 20;
+day = day + 1;
+console.log(day);
+
+

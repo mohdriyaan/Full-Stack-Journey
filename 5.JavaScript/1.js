@@ -20,29 +20,29 @@
 
 // Math operations
 // addition
-10+3
+console.log(10+3)
 // subtraction
-10-3
+console.log(10-3)
 // Division
-10/3
+console.log(10/3)
 // modulo
-10%3
+console.log(10%3)
 // Precedence in math operations
-3+1*9
-(3+1)*9
+console.log(3+1*9)
+console.log((3+1)*9)
 // Even or odd
-19%2 // Odd
-20%2 // Even
+console.log(19%2) // Odd
+console.log(20%2) // Even
 // Exponentiation
-2**4 // 2 power 4
-10**2 // 10 power 2
+console.log(2**4) // 2 power 4
+console.log(10**2) // 10 power 2
 
 // NaN is a numeric value that represents something that is not a number.
-0/0; //NaN
-1+ NaN //NaN
-NaN * NaN
+console.log(0/0); //NaN
+console.log(1+ NaN) //NaN
+console.log(NaN * NaN)
 
 // typeof operator tells the data type.
-typeof 4
-typeof 4.212131434
-typeof NaN
+console.log(typeof 4)
+console.log(typeof 4.212131434)
+console.log(typeof NaN)
