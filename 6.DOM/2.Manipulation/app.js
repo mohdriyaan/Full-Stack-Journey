@@ -56,4 +56,53 @@
 // h2.classList.contains("border")
 // console.log(h2.getAttribute("class"))
 
-// 
+// Traversing Parent/Child/Sibling
+// const firstBold = document.querySelector("b")
+// console.log(firstBold.parentElement) // gives paragraph element
+// console.log(firstBold.parentElement.parentElement) // gives body
+// console.log(firstBold.parentElement.parentElement.parentElement) // gives html element
+
+// const paragraph= firstBold.parentElement
+// console.log(paragraph.children) // gives array of child elements in the paragraph 
+
+// console.log(paragraph.children[0])
+
+// const squareImg = document.querySelector(".square")
+
+// console.log(squareImg.nextElementSibling) // gives next adjacent element
+
+// console.log(squareImg.previousElementSibling) // gives previous adjacent element
+
+// // creating element
+// const newImg = document.createElement("img")
+// newImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Partridge_Silkie_hen.jpg/900px-Partridge_Silkie_hen.jpg"
+// document.body.appendChild(newImg) // append this as the last child of the body
+// newImg.classList.add("square")
+
+// const newH3 = document.createElement("h3")
+// newH3.innerText="I am new!"
+// document.body.appendChild(newH3)
+
+// const p = document.querySelector("p")
+// p.append("I am new text!!!!","jbdxhevdjxvjhewvdjh")
+// const newB = document.createElement("b")
+// newB.append("HI!")
+// p.prepend(newB)
+
+// const h2 = document.createElement("h2")
+// h2.append("Are adorable chickens!!")
+// document.querySelector("h1").insertAdjacentElement("afterend",h2)
+
+// const h3 = document.createElement("h3")
+// h3.innerText="I am h3!"
+// h2.after(h3)
+
+// Remove Child
+const firstLi = document.querySelector("li")
+const ul = firstLi.parentElement
+ul.removeChild(firstLi)
+
+const img = document.querySelectorAll(".square") 
+img[1].remove()
+
+
