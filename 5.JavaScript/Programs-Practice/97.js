@@ -61,3 +61,4 @@ function decode(str){
 }
 
 decode("TUFO")
+

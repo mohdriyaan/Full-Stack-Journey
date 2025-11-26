@@ -1,0 +1,4 @@
+Events:- Responding to user actions and inputs like
+clicks, drags, drops, hover, form submission, mouse overing, keyboard events, double click , copying, pasting, screen resize,
+scrolls, key presses, focus/blur, mouse wheel, audio start, printing.
+
