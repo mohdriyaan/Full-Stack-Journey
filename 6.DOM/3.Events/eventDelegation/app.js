@@ -1,18 +1,3 @@
-const form = document.querySelector("#shelter-form")
-const input = document.querySelector("#catName")
-const list = document.querySelector("#cats")
-form.addEventListener("submit",function(e){
-    e.preventDefault();
-    // console.log(input.value)
-    const catName = input.value
-    const newLi = document.createElement("li")
-    newLi.innerText= catName
-    list.append(newLi)
-    input.value=""
-})
-
-
-
 const list1 = document.querySelector("#tweets")
 const input1 = document.querySelector("#username")
 const input2 = document.querySelector("#tweet")
@@ -31,5 +16,7 @@ form1.addEventListener("submit",function(e){
     input2.value=""
 })
 
-
+list1.addEventListener("click",function(e){
+    e.target.nodeName==="LI"&& e.target.remove()
+})
 
