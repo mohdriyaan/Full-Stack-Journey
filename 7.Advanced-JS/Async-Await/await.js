@@ -38,3 +38,30 @@ async function printRainbow(){
 
 
 printRainbow()
+
+const fakeRequestPromise=(url)=>{
+    return new Promise((resolve,reject)=>{
+        const delay = Math.floor(Math.random()*4500)+400
+        setTimeout(()=>{
+            if(delay>4000){
+                reject(`Connection timeout`)
+            }else{
+                resolve(`Here is your fake data from ${url}`)
+            }
+        },delay)
+    })
+}
+
+const makeRequest=async()=>{
+    try{
+        let data1 = await fakeRequestPromise("/api/1.txt")
+        console.log(data1)
+        let data2 = await fakeRequestPromise("/api/2.txt")
+        console.log(data2)
+    }catch(err){
+        console.log("Error Caught")
+        console.log(`error is ${err}`)
+    }
+}
+
+makeRequest()
