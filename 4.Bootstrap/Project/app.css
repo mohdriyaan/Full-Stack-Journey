@@ -1,0 +1,90 @@
+body{
+    background-color: #f5d9df;
+    font-family: "Nunito",sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+#mainNavbar{
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+#mainNavbar .navbar-brand{
+    color: #EA1C2C;
+    font-size: 1.5rem;
+}
+
+#mainNavbar .nav-link{
+    color: white;
+    font-size: 1rem;
+    padding: 10px 15px;
+
+}
+
+#mainNavbar .nav-link:hover{
+    color: #EA1C2C;
+    
+}
+
+#headingGroup span{
+    color: #EA1C2C;
+}
+
+/* Left column background */
+.text-column {
+  background: #f7dfe5;
+  min-height: 100vh;
+}
+
+/* Right image column */
+.image-column {
+  background-image: url("./imgs/hand2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* Main text styling */
+#headingGroup h1 {
+  font-weight: 200;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  margin: 0;
+  color: white;
+}
+
+/* Highlight ONLY the slash */
+.slash {
+  color: #ea1c2c;
+  font-weight: 300;
+}
+
+/* Subtle shifting for stacked effect */
+#headingGroup h1:nth-child(odd) {
+  transform: translateX(-12px);
+  opacity: 0.85;
+}
+#headingGroup h1:nth-child(even) {
+  transform: translateX(12px);
+  opacity: 0.85;
+}
+
+/* RESPONSIVE — HIDE ALL TEXT ON SMALLER SCREENS */
+@media (max-width: 992px) {
+  #headingGroup {
+    display: none !important;
+  }
+
+  .text-column {
+    display: none !important;
+  }
+
+  .image-column {
+    min-height: 100vh;
+    width: 100%;
+  }
+}
+
