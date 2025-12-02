@@ -1,0 +1,156 @@
+/* -------- Global styles & transitions -------- */
+* {
+    transition: 
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f7f9fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* -------- Light Mode Card -------- */
+form {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    gap: 15px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* -------- Inputs -------- */
+input[type="text"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d0d7e2;
+    background: #fff;
+    color: #000;
+}
+
+input[type="text"]:focus {
+    border-color: #7aafff;
+    box-shadow: 0 0 5px rgba(53, 133, 255, 0.3);
+}
+
+/* -------- Button -------- */
+button {
+    padding: 12px;
+    background: #4e8cff;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+button:hover {
+    background: #3b73d9;
+}
+
+/* -------- Output (readonly) -------- */
+#output {
+    background: #f0f2f5;
+}
+
+/* ------------------------------------------------------------------
+                    DARK MODE STYLES
+------------------------------------------------------------------- */
+body.dark {
+    background: #1c1e22;
+}
+
+body.dark form {
+    background: #292c31;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+body.dark h1 {
+    color: #e6e6e6;
+}
+
+body.dark label {
+    color: #d6d6d6;
+}
+
+body.dark input[type="text"] {
+    background: #1f2227;
+    border-color: #444;
+    color: #eee;
+}
+
+body.dark #output {
+    background: #1f2227;
+}
+
+body.dark button {
+    background: #6a9bff;
+}
+
+body.dark button:hover {
+    background: #507ee0;
+}
+
+/* ------------------------------------------------------------------
+                    DARK MODE TOGGLE SWITCH
+------------------------------------------------------------------- */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.switch {
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.switch::after {
+    content: "";
+    width: 22px;
+    height: 22px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+/* When toggle is ON */
+#toggleMode:checked + .switch {
+    background: #4e8cff;
+}
+
+#toggleMode:checked + .switch::after {
+    transform: translateX(24px);
+}
+
+/* Hide checkbox */
+#toggleMode {
+    display: none;
+}
