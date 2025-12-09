@@ -1,0 +1,34 @@
+section{
+    background-color:grey;
+    width: 800px;
+    height: 800px;
+}
+
+div{
+    background-color: palevioletred;
+    width: 50%; /*50% of the parent element*/
+    width: 50%;
+}
+
+h1{
+    font-size: 40px; 
+    border: 1px solid black;
+    line-height: 200%; /*half the font-size of the element itself*/
+/* em's are retive units. With font-size, 1em equals the font size of the parent element.*/
+}
+
+h2{
+    font-size:2em;
+}
+
+h3{
+    font-size:1.5em;
+}
+
+p{
+    font-size: 1em;;
+}
+
+article{
+    font-size: 30px;
+}

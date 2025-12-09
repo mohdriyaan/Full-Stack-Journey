@@ -1,0 +1,84 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background styling */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #3b3b98, #4e54c8, #8f94fb);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Form container */
+form {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    width: 350px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Heading */
+h1 {
+    position: absolute;
+    top: 30px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+/* Labels */
+label {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Input fields */
+input[type="text"] {
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+/* Hover/Focus effect */
+input[type="text"]:focus {
+    transform: scale(1.03);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #fff;
+    color: #3b3b98;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #e3e3e3;
+}

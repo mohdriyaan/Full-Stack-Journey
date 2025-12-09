@@ -1,0 +1,32 @@
+<!-- Cascade:- The order the styles are declared in and linked to matters
+Ex:-  
+h1{
+color: red;
+}
+h1{
+color:purple;
+}
+
+Here color purple gets applied
+
+If the second styles document gets added
+i.e., <link rel="stylesheet" href="app1.css"/> 
+      <link rel="stylesheet" href="app2.css"/>
+Then app2.css will overwrite the styles used for elements in app1.css
+-->
+
+<!-- Specificity is how the browser decides which rules to apply when multiple rules
+could apply to the same element. It is a measure of how specific a given selector is. The more
+specific selector "wins".
+
+Ex:- 
+p{                       section p{
+ color: yellow;  <<         color:teal;
+}                        }
+
+Inline Style CSS > ID > Class > Element
+
+Specificity will be applied only when the elements have the same property
+
+!important will override the specificity.
+-->

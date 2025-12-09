@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Game Premium v4</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #071020;
+  --card: #0f1724cc;
+  --accent: #7c3aed;
+  --muted: rgba(255,255,255,0.75);
+  --radius: 18px;
+}
+
+/* Page */
+html, body {margin:0; height:100%; font-family: 'Inter', sans-serif; background: linear-gradient(180deg, #071020, #041226); color: #fff;}
+main {min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; box-sizing:border-box;}
+
+/* Container */
+.container {
+  width: 720px;
+  max-width: 98%;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: rgba(15,23,36,0.85);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(2,6,23,0.6);
+  backdrop-filter: blur(12px) saturate(150%);
+  overflow: hidden;
+}
+
+/* Screens */
+.screen { display: none; max-height: 75vh; overflow-y:auto; padding-right: 10px; }
+.screen.active { display: block; }
+
+/* Headings & text */
+h1 { color:#ffffff; font-weight:800; text-align:center; margin-bottom:12px; font-size:2.2rem; }
+.subtitle, .quiz-info, .result-info, #result-message { color: #ffffff; font-weight:500; text-align:center; }
+.subtitle { margin-bottom:18px; }
+#question-text { color:#ffffff; font-weight:700; text-align:center; margin-bottom:12px; font-size:1.4rem; }
+
+/* Buttons */
+.btn, .answer-btn {
+  display: block;
+  width:100%;
+  padding:12px 16px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);
+  color:#ffffff;
+  font-weight:700;
+  cursor:pointer;
+  transition: transform .16s, box-shadow .16s, background .3s;
+}
+.btn:hover, .answer-btn:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.4); }
+.btn:active, .answer-btn:active { transform: translateY(-1px); }
+.btn:focus, .answer-btn:focus { outline:none; box-shadow:0 0 0 3px rgba(124,58,237,0.22); }
+
+/* Answer feedback */
+.answer-btn.correct { background: #16a34a; color:#041014; }
+.answer-btn.incorrect { background: #ef4444; color:#ffffff; }
+
+/* Quiz info */
+.quiz-info { display:flex; justify-content:space-between; margin-bottom:12px; font-size:1rem; }
+.answers-container { display:flex; flex-direction:column; gap:12px; margin-top:10px; }
+
+/* Progress bar */
+.progress-bar { height:12px; border-radius:12px; background: rgba(255,255,255,0.04); margin-top:18px; overflow:hidden; }
+.progress { height:100%; width:0%; background: #4ade80; transition: width .45s ease; }
+
+/* Result screen */
+.result-actions { display:flex; justify-content:center; margin-top:18px; }
+
+/* Responsive */
+@media (max-width:640px){
+  .container { padding:20px; border-radius:14px; }
+  h1 { font-size:1.8rem; }
+  #question-text { font-size:1.2rem; }
+  .btn, .answer-btn { font-size:0.95rem; padding:10px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="container">
+
+    <!-- START SCREEN -->
+    <section class="screen active" id="start-screen">
+      <h1>Quiz Time!</h1>
+      <p class="subtitle">Test your knowledge and have fun!</p>
+      <button id="start-btn" class="btn">Start Quiz</button>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section class="screen" id="quiz-screen">
+      <div class="quiz-header">
+        <div id="question-text">Question will appear here</div>
+        <div class="quiz-info">
+          <div>Question <span id="current-question">1</span> of <span id="total-questions">5</span></div>
+          <div>Score: <span id="score">0</span></div>
+        </div>
+      </div>
+      <div id="answers-container" class="answers-container"></div>
+      <div class="progress-bar"><div id="progress" class="progress"></div></div>
+    </section>
+
+    <!-- RESULT SCREEN -->
+    <section class="screen" id="result-screen">
+      <h1>Quiz Results</h1>
+      <div class="result-info">
+        <p>You scored <span id="final-score">0</span> out of <span id="max-score">5</span></p>
+        <div id="result-message">Good Job!</div>
+      </div>
+      <div class="result-actions">
+        <button id="restart-btn" class="btn">Restart Quiz</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+/* DOM */
+const startScreen = document.getElementById('start-screen');
+const quizScreen = document.getElementById('quiz-screen');
+const resultScreen = document.getElementById('result-screen');
+const startBtn = document.getElementById('start-btn');
+const restartBtn = document.getElementById('restart-btn');
+const questionText = document.getElementById('question-text');
+const answersContainer = document.getElementById('answers-container');
+const currentQ = document.getElementById('current-question');
+const totalQ = document.getElementById('total-questions');
+const scoreSpan = document.getElementById('score');
+const finalScore = document.getElementById('final-score');
+const maxScore = document.getElementById('max-score');
+const progressBar = document.getElementById('progress');
+const resultMsg = document.getElementById('result-message');
+
+/* Questions */
+const quizQuestions = [
+  { question:"Capital of France?", answers:[{text:"London", correct:false},{text:"Berlin", correct:false},{text:"Paris", correct:true},{text:"Madrid", correct:false}] },
+  { question:"Red Planet?", answers:[{text:"Venus", correct:false},{text:"Mars", correct:true},{text:"Jupiter", correct:false},{text:"Saturn", correct:false}] },
+  { question:"Largest ocean?", answers:[{text:"Atlantic", correct:false},{text:"Indian", correct:false},{text:"Arctic", correct:false},{text:"Pacific", correct:true}] },
+  { question:"Not a programming language?", answers:[{text:"Java", correct:false},{text:"Python", correct:false},{text:"Banana", correct:true},{text:"JavaScript", correct:false}] },
+  { question:"Chemical symbol for gold?", answers:[{text:"Go", correct:false},{text:"Gd", correct:false},{text:"Au", correct:true},{text:"Ag", correct:false}] }
+];
+
+/* State */
+let currentIndex=0, score=0, locked=false;
+
+totalQ.textContent = quizQuestions.length;
+maxScore.textContent = quizQuestions.length;
+
+/* Events */
+startBtn.addEventListener('click', startQuiz);
+restartBtn.addEventListener('click', restartQuiz);
+
+function startQuiz(){
+  currentIndex=0; score=0; locked=false; scoreSpan.textContent=0;
+  showScreen(quizScreen);
+  showQuestion();
+}
+
+function restartQuiz(){
+  showScreen(startScreen);
+  progressBar.style.width='0%';
+}
+
+function showScreen(screen){
+  [startScreen,quizScreen,resultScreen].forEach(s=>s.classList.remove('active'));
+  screen.classList.add('active');
+  document.body.scrollTop=0; document.documentElement.scrollTop=0;
+}
+
+function showQuestion(){
+  locked=false;
+  const q = quizQuestions[currentIndex];
+  questionText.textContent=q.question;
+  currentQ.textContent=currentIndex+1;
+  progressBar.style.width=((currentIndex/quizQuestions.length)*100)+'%';
+
+  answersContainer.innerHTML='';
+  q.answers.forEach(a=>{
+    const btn=document.createElement('button');
+    btn.className='answer-btn';
+    btn.textContent=a.text;
+    btn.dataset.correct=a.correct?'1':'0';
+    btn.addEventListener('click', selectAnswer);
+    answersContainer.appendChild(btn);
+  });
+}
+
+function selectAnswer(e){
+  if(locked) return;
+  locked=true;
+  const btn=e.currentTarget;
+  const correct=btn.dataset.correct==='1';
+  Array.from(answersContainer.children).forEach(b=>{
+    if(b.dataset.correct==='1') b.classList.add('correct');
+    b.disabled=true;
+  });
+  if(!correct) btn.classList.add('incorrect');
+  if(correct){ score++; scoreSpan.textContent=score; }
+  setTimeout(()=>{
+    currentIndex++;
+    if(currentIndex<quizQuestions.length) showQuestion();
+    else showResults();
+  },700);
+}
+
+function showResults(){
+  finalScore.textContent=score;
+  const pct = Math.round((score/quizQuestions.length)*100);
+  resultMsg.textContent = pct===100?"Perfect!":pct>=80?"Excellent!":pct>=60?"Good effort!":"Keep practicing!";
+  progressBar.style.width='100%';
+  showScreen(resultScreen);
+}
+</script>
+</body>
+</html>

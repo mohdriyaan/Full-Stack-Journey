@@ -1,0 +1,246 @@
+/* -----------------------------------
+   PREMIUM UI V3 – Flagship Design
+   by ChatGPT
+--------------------------------------*/
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root Theme Colors */
+:root {
+    --theme-primary: #7c3aed;
+    --theme-secondary: #4f46e5;
+    --theme-accent: #0ea5e9;
+
+    --light-bg: #f5f7fd;
+    --light-card: #ffffffcc;
+    --light-text: #111;
+    --light-soft: rgba(255, 255, 255, 0.55);
+
+    --dark-bg: #0f172a;
+    --dark-card: rgba(255, 255, 255, 0.08);
+    --dark-text: #f1f5f9;
+    --dark-soft: rgba(255, 255, 255, 0.15);
+
+    --radius: 22px;
+    --transition: 0.35s ease;
+}
+
+/* AUTO DARK MODE */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --theme-primary: #a855f7;
+        --theme-secondary: #6366f1;
+        --theme-accent: #22d3ee;
+
+        --light-bg: var(--dark-bg);
+        --light-card: var(--dark-card);
+        --light-text: var(--dark-text);
+        --light-soft: var(--dark-soft);
+    }
+}
+
+/* BODY */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary), var(--theme-accent));
+    background-size: 200% 200%;
+    animation: gradientFlow 12s ease infinite;
+    color: var(--light-text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+/* Animated Gradient */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* MAIN CARD */
+.container {
+    width: 100%;
+    max-width: 520px;
+    padding: 35px;
+
+    border-radius: var(--radius);
+    background: var(--light-card);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid var(--light-soft);
+
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.2),
+        inset 0 2px 8px rgba(255,255,255,0.25);
+
+    animation: cardFade 0.7s ease-out;
+}
+
+/* Card Animation */
+@keyframes cardFade {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Screen states */
+.screen { display: none; }
+.screen.active { display: block; animation: cardFade 0.6s ease-out; }
+
+/* HEADINGS */
+h1 {
+    font-size: 2.45rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+p {
+    text-align: center;
+    opacity: 0.85;
+}
+
+/* BUTTONS – Premium Soft-Glow Design */
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 22px;
+    font-size: 1.18rem;
+    font-weight: 600;
+
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+    color: white;
+
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.25),
+        inset 0 1px 4px rgba(255,255,255,0.5);
+
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Buttons Hover */
+button:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 14px 35px rgba(0,0,0,0.35),
+        inset 0 1px 5px rgba(255,255,255,0.6);
+}
+
+/* Ripple Effect */
+button::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    transform: scale(0);
+    opacity: 0.7;
+    pointer-events: none;
+}
+button:active::after {
+    width: 300px;
+    height: 300px;
+    transform: scale(1);
+    opacity: 0;
+    transition: 0.45s;
+}
+
+/* QUESTION TEXT */
+#question-text {
+    font-size: 1.55rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ANSWER BUTTONS – Duolingo style */
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.answer-btn {
+    padding: 15px;
+    border-radius: var(--radius);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-align: center;
+
+    background: var(--light-soft);
+    border: 1px solid transparent;
+
+    transition: var(--transition);
+}
+
+/* Hover */
+.answer-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px);
+}
+
+/* Correct (green neon) */
+.answer-btn.correct {
+    background: #16a34a;
+    border-color: #16a34a;
+    box-shadow: 0 0 18px #16a34a;
+    color: #fff;
+    animation: correctPop 0.45s ease-out;
+}
+@keyframes correctPop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.09); }
+    100% { transform: scale(1); }
+}
+
+/* Incorrect (red neon) */
+.answer-btn.incorrect {
+    background: #dc2626;
+    border-color: #dc2626;
+    box-shadow: 0 0 18px #dc2626;
+    color: #fff;
+}
+
+/* PROGRESS BAR – Premium Glow */
+.progress-bar {
+    background: rgba(255,255,255,0.25);
+    margin-top: 30px;
+    border-radius: 20px;
+    height: 14px;
+    overflow: hidden;
+}
+
+.progress {
+    background: linear-gradient(90deg, #22c55e, #4ade80, #86efac);
+    box-shadow: 0 0 18px #4ade80;
+    width: 0%;
+    height: 100%;
+    transition: width 0.5s ease-out;
+}
+
+/* RESULTS SCREEN */
+#result-message {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-top: 20px;
+    text-align: center;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.35);
+}

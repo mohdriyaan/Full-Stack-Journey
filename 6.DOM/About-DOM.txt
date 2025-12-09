@@ -1,0 +1,10 @@
+DOM:- Document Object Model
+
+--> The DOM is a JS representation of a webpage
+--> It's your JS window into the contents of the webpage
+--> It's just a bunch of objects that you can interact via JS.
+
+Document:-
+Thre document object is our entry point into the world of the DOM. It contains represenations of all the contents on the page,
+plus tons of  useful methods and properties.
+

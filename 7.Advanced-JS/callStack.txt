@@ -1,0 +1,9 @@
+The mechanism the JS interpreter uses to keep track of its place in a script that 
+calls multiple fns.
+
+How JS knows what fn is currently being run and what fns are called from within that fn, etc.
+
+How it works:-
+-> When a script calls a fn, the interpreter adds it to the call stack and then starts carrying out the fn.
+-> Any fns that are called by that fn are added to the call stack further up and run where their calls are reached.
+-> When current fn is finished, the interpreter takes it off the stack and resumes execution where it left off in the last code listing.
