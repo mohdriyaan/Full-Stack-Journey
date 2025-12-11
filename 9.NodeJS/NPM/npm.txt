@@ -1,0 +1,4 @@
+NPM :- Node Package Manager
+NPM is really two things:-
+-> A library of thousands of packages published by other developers that we can use for free.
+-> A command line tool to easily install and manage those packages in our Node projects.

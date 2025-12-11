@@ -1,0 +1,32 @@
+What is Node?
+Node is a JS runtime.
+Until, recently, we could only run JS code in a web browser. Node is a JS runtime that executes code outside of the browser.
+
+We can use the same JS syntax we knnow and love to write server side code, instead of relying on other languages like Python and Ruby.
+
+Using node we can build:-
+-> Web servers
+-> comand Line tools
+-> Native Apps
+-> video Games
+-> Drone Software
+And a whole lot more...
+
+Node REPL:- 
+Node REPL is an interactive shell that allows you to run JavaScript code line by line directly in your terminal using Node.js.
+
+REPL stands for:
+
+👉 Read
+👉 Evaluate
+👉 Print
+👉 Loop
+
+This means:
+
+-> It reads what you type
+-> Evaluates (runs) your JavaScript
+-> Prints the output
+-> And loops back to take more input
+
+Note :- Node does not have access to the browser stuff like window, document and DOM.

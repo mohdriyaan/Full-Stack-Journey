@@ -1,0 +1,47 @@
+A process is a program that is currently running in memory.
+
+When you run any program — a browser, VS Code, node app.js, or even ls — the operating system creates a process to manage it.
+
+🔥 Think of it like:
+
+🧠 A process is a living, running instance of a program.
+
+The program (code) is like a recipe.
+The process is like actually cooking the recipe.
+
+🧩 What each process has
+
+Every process gets:
+
+its own memory
+
+its own CPU time
+
+its own execution environment
+
+its own ID (PID)
+
+its input/output streams
+
+its own variables and state
+
+Node provides a global object called process which gives info about the current Node process.
+
+Example:
+
+console.log(process.pid);   // print process ID
+console.log(process.cwd()); // print current working directory
+console.log(process.argv);  // arguments passed
+
+Exit the process:
+process.exit();
+
+Node also handles:
+
+environment variables (process.env)
+
+signals (SIGINT, SIGTERM)
+
+🎯 In One Line
+
+A process is a running program with its own memory and system resources.

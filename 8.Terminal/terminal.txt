@@ -1,0 +1,75 @@
+Terminal is a text interface or you can say text based interface.
+(or)
+A text-based interface to your computer, originally a physical object, but now we use software terminals.
+Examples of terminals:
+--> Windows Terminal
+--> macOS Terminal
+--> Linux GNOME Terminal
+--> iTerm2
+--> Command Prompt (acts like a terminal)
+
+
+Why terminal ? 
+-> Speed :- the terminal takes one getting used to, but it can be much faster than using a GUI. 
+-> Access :- the terminal provides a "mainline" into the heart of our computer giving us access to areas we don't normally interact with.
+-> Tools:- Many of the tools we need for backend development are installed and used via the command line. 
+
+Shell :- The program running on the terminal. A shell is a program that takes your commands, understands them, and tells the operating system what to do.
+In analogy, the ATM is the terminal. The software running on the ATM is shell.
+
+Examples of shells:
+
+--> bash
+--> zsh
+--> fish
+--> ksh
+--> PowerShell (Windows)
+--> cmd.exe (Windows Command Prompt)
+
+Bash:- One of the most popular shells.
+
+🎯 Analogy to remember easily
+
+Imagine you want to talk to a robot:
+Terminal = The microphone + speaker
+Shell = The robot’s language interpreter
+Bash = One specific language the robot understands
+
+Commands:- 
+-> ls :- list the contents of the directory
+-> pwd:- print working directory
+-> cd:- to change and move between directories/folders.
+-> cd.. :- used to back up one directory
+-> absolute path:- An absolute path gives the complete path from the root of the file system.
+
+It always starts from the root directory: / on Linux
+Think of it like:
+📍 The full address of a house (country → state → city → street → house number).
+
+-> relative path:- A relative path gives the path relative to your current directory.
+
+It does NOT start from root (/ or C:\).
+
+Think of it like:
+📌 Directions from where you are right now ("go into this folder", "go back one folder")
+
+project/file.txt → means: go inside project
+../Downloads → means: go up one folder then into Downloads
+./script.sh → means: run script from the current directory
+
+-> mkdir :- create a new directory.
+-> man :-  man command in Linux/macOS shows the manual pages (documentation) for commands, programs, files, and system calls.
+-> flags:- Flags (also called options or switches) are extra instructions you add to a command to change how it behaves.
+
+They normally start with:
+
+one dash - → short flags
+
+two dashes -- → long flags
+
+ex:- ls -la , ls -l
+
+-> touch:- creates a file or multiple files with an extension.
+
+-> rm:- rm will delete files and directories. It permanently remove it.
+
