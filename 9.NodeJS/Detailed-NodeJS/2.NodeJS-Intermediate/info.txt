@@ -1,0 +1,17 @@
+We can't run npm start-server and instead we need to type as npm run start-server 
+
+npm install nodemon --save :- install it as a production dependency
+npm install nodemon --save-dev :-  install it as a development dependency
+npm install nodemon -g :- adds dependency globally which can be used anywhere
+
+Global features: Keywords like const or function but also some global objects like process
+
+Core Node.js Modules: Examples would be the file-system module ("fs"), the path module ("path") or the Http module ("http")
+
+Third-party Modules: Installed via npm install - you can add any kind of feature to your app via this way
+
+Types of Errors :-
+1. Syntax Errors
+2. Runtime Errors
+3. Logical Errors
+
