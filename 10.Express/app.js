@@ -14,7 +14,8 @@ const adminRoutes = require("./routes/admin.js")
 const shopRoutes = require("./routes/shop.js")
 
 app.use(bodyParser.urlencoded({ extended: false }))
-
+// Handles static files and does pass through middlewares.
+app.use(express.static(path.join(__dirname,"public")))
 // app.use("/",(req,res,next)=>{
 //     // console.log("This always runs!")
 //     next()

@@ -1,0 +1,64 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header and navigation */
+header {
+    background-color: #222;
+    padding: 15px 30px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: #444;
+}
+
+/* Main content */
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* Users list */
+main ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+main ul li {
+    padding: 6px 0;
+}
