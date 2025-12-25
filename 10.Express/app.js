@@ -29,6 +29,11 @@ app.use(express.static(path.join(__dirname,"public")))
 //     next()
 // })
 
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+});
+
 app.use("/admin",adminData.routes)
 app.use(shopRoutes)
 
