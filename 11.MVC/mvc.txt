@@ -1,0 +1,7 @@
+MVC - Models Views Controllers
+Models - Represents your data in the code. Works with your data(eg., save,fetch)
+Views - What the users see, decoupled from your application code.
+Controllers - Connecting your models and your Views. Contains the in-between logic.
+
+
+
