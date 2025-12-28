@@ -1,0 +1,3 @@
+Templating allows is to define a preset "pattern" for a webpage, that we can dynamically modify with.
+
+For ex., we could define a single "search" template that displays all the results for a given search term.
