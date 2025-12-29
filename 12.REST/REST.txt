@@ -1,0 +1,7 @@
+REST stands for "Representational State Transfer"
+
+It's basically a set of guidelines for how a client + server should communicate and perform CRUD opeations on a given resource.
+
+The main idea of REST is trating data on the server-side as resources that can be CRUDed.
+
+The most common way of approaching REST is in formatting the URLs and HTTP verbs in your applications.
