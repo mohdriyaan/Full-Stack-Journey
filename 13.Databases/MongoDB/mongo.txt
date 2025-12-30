@@ -1,0 +1,34 @@
+Mongo is a popular database used commonly with NodeJS Applications
+
+It is a document database, which we can use to store and retrieve complex data from.
+
+Why use database ?
+Instead of just saving to a file, 
+-> Databases can handle large amounts of data efficiently and store it compactly
+-> They provide tools for easy insertion, querying and updating of data.
+-> They generally offer security features and control over access to data.
+-> They (generally) scale well.
+
+SQL vs NoSQL
+SQL Databases = Structured Query Language databases are relational databases. We pre-define a schema of tables before we insert anything.
+NoSQL Databases = NoSQL databases do not use SQL. There are many types of no-sql databases, including document, key-valu, and graph stores.
+
+SQL Popular Databases:- 
+-> MySQL
+-> Postgres
+-> SQLite
+-> Oracle
+-> Microsoft SQL Server
+
+NoSQL Popular Databases :- 
+-> MongoDB
+-> Couch MongoDB
+-> Neo4j
+-> Cassandra
+-> Redis
+
+Why use Mongo?
+-> Mongo is very commonly used with Node and Express(MEAN and MERN Stacks)
+-> It's easy to get started with.
+-> It plays particularly well with JavaScript
+-> Strong community

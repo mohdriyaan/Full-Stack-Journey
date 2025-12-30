@@ -1,0 +1,6 @@
+ODM :- Object Data Mapper
+ODM's like Mongoose map docs coming from a database into usable JS objects.
+
+Mongoose provides ways for us to model out our application data and define a schema.
+It offers easy ways to validate data and build complex queries from the comfort of JS.
+
