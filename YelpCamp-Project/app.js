@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require("mongoose")
 const Campground = require("./models/campground")
 const methodOverride = require("method-override")
+const ejsMate = require("ejs-mate")
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp")
     .then(()=>{
@@ -12,10 +13,13 @@ mongoose.connect("mongodb://localhost:27017/yelp-camp")
         console.log("Connection Failed : ", err)
     })
 
+
+app.engine("ejs",ejsMate)
 app.set("view engine","ejs")
 app.set("views","views")
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride("_method"))
+
 
 app.get("/",(req,res)=>{
     res.render("home")
