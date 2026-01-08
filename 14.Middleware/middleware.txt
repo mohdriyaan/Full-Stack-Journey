@@ -1,0 +1,6 @@
+Express middleware are functions that run during the request/response lifecycle.
+
+-> Middleware are just functions
+-> Each middleware has access to the request and response objects
+-> Middleware can end the HTTP request by sending back a response with methods like res.send()
+-> OR middleware can be chained together, one after another by calling next()
