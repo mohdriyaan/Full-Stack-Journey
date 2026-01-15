@@ -1,0 +1,59 @@
+const mongoose = require("mongoose")
+
+mongoose.connect("mongodb://localhost:27017/relationshipDemo")
+    .then(()=>{
+        console.log("DB connected Successfully!")
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+// One to Few Relationship 
+const userSchema = new mongoose.Schema({
+    first:String,
+    last:String,
+    addresses:[
+        {   
+            _id: {_id : false},
+            street:String,
+            city:String,
+            state:String,
+            country:{
+                type:String,
+                required:true
+            }
+        }
+    ]
+})
+
+const User = mongoose.model("User",userSchema)
+
+const makeUser = async()=>{
+    const u = new User({
+        first:"Harry",
+        last:"Potter"  
+    })
+    u.addresses.push({
+        street:"123 Sesame St",
+        city:"New York",
+        state:"NY",
+        country:"USA"
+    })
+    const res = await u.save()
+    console.log(res)
+}
+
+const addAddress = async(id) => {
+    const user = await User.findById(id)
+    user.addresses.push({
+        street:"99 3rd St",
+        city:"New York",
+        state:"NY",
+        country:"USA"
+    })
+    const res = await user.save()
+    console.log(res)
+}
+
+// makeUser()
+addAddress("6968cec866ca0d26439d9829")
