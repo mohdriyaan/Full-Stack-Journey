@@ -1,0 +1,7 @@
+Authentication is the process of verifying who a particulare user is.
+We typically authenticate with a username/password combo, but we can also use security questions,
+facial recognition, etc.
+
+Authorization is verifying what a specific user has access to.
+Generally, we authorize after a user has been authenticated.
+
