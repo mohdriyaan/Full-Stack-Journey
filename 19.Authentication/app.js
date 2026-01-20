@@ -19,6 +19,13 @@ app.use(session(sessionConfig))
 
 app.use(express.urlencoded({extended:true}))
 
+const requireLogin = (req,res,next) => {
+    if(!req.session.user_id){
+        return res.redirect("/login")
+    }
+    next()
+}
+
 app.get("/",(req,res)=>{
     res.send("This is a home page")
 })
@@ -35,6 +42,7 @@ app.post("/register",async(req,res)=>{
         password : hash
     })
     await user.save()
+    req.session.user_id = user._id
     res.redirect("/")
 })
 
@@ -44,17 +52,38 @@ app.get("/login",(req,res)=>{
 
 app.post("/login",async (req,res)=>{
     const {username,password} = req.body
-    const user = await User.findOne({username})
-    const validPassword = await bcrypt.compare(password,user.password)
-    if(validPassword){
-        res.send("Login Successfully!!")
+    const foundUser = await User.findAndValidate(username,password)
+    if(foundUser){
+        req.session.user_id = foundUser._id
+        res.redirect("/secret")
     }else{
-        res.send("Try Again!")
+        res.redirect("/login")
     }
+    // const user = await User.findOne({username})
+    // if(!user){
+    //     return res.send("User not found")
+    // }
+    // const validPassword = await bcrypt.compare(password,user.password)
+    // if(validPassword){
+    //     req.session.user_id = user._id
+    //     res.redirect("/secret")
+    // }else{
+    //     res.redirect("/login")
+    // }
 })
 
-app.get("/secret",(req,res)=>{
-    res.send("This is a secret! You cannot see me unless logged in.")
+app.post("/logout",(req,res)=>{
+    req.session.user_id = null
+    req.session.destroy()
+    res.redirect("/login")
+})
+
+app.get("/secret",requireLogin,(req,res)=>{
+    res.render("secret")
+})
+
+app.get("/topsecret",requireLogin,(req,res)=>{
+    res.send("This is a top secret!!")
 })
 
 app.listen(3000,()=>{
