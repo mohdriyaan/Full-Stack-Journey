@@ -3,6 +3,7 @@ const router = express.Router()
 const ExpressError = require("../utils/ExpressError")
 const Campground = require("../models/campground")
 const {campgroundSchema} = require("../schemas")
+const {isLoggedIn} = require("../middleware")
 
 const validateCampground = (req,res,next)=>{
     const {error} = campgroundSchema.validate(req.body)
@@ -19,11 +20,11 @@ router.get("/", async(req,res,next)=>{
     res.render("campgrounds/index",{campgrounds})    
 })
 
-router.get("/new",(req,res)=>{
+router.get("/new",isLoggedIn,(req,res)=>{
     res.render("campgrounds/new")
 })
 
-router.post("/",validateCampground, async(req,res,next)=>{
+router.post("/",isLoggedIn,validateCampground, async(req,res,next)=>{
     const campground = new Campground(req.body)
     await campground.save()
     req.flash("success","Successfully made a new campground!")
@@ -42,7 +43,7 @@ router.get("/:id",async(req,res,next)=>{
     
 })
 
-router.get("/:id/edit",async(req,res,next)=>{
+router.get("/:id/edit",isLoggedIn,async(req,res,next)=>{
     const {id} = req.params
     const campground = await Campground.findById(id)
     if(!campground){
@@ -52,7 +53,7 @@ router.get("/:id/edit",async(req,res,next)=>{
     res.render("campgrounds/edit",{campground})
 })
 
-router.put("/:id",validateCampground,async(req,res,next)=>{
+router.put("/:id",isLoggedIn,validateCampground,async(req,res,next)=>{
     if(!req.body){
         throw new ExpressError("Invalid Campground Data",400)
     }
@@ -62,7 +63,7 @@ router.put("/:id",validateCampground,async(req,res,next)=>{
     res.redirect(`/campgrounds/${campground._id}`)
 })
 
-router.delete("/:id",async(req,res,next)=>{
+router.delete("/:id",isLoggedIn,async(req,res,next)=>{
     const {id} = req.params
     await Campground.findByIdAndDelete(id)
     req.flash("success","Successfully deleted campground!")
