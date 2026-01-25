@@ -52,7 +52,6 @@ module.exports.editCampground = async(req,res,next)=>{
     const campground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true})
     const imgs = req.files.map((f)=>({url:f.path,filename:f.filename}))
     campground.images.push(...imgs)
-    console.log(req.body)
     await campground.save()
     if(req.body.deleteImages){
         for(let filename of req.body.deleteImages){
