@@ -1,5 +1,8 @@
 const Campground = require("../models/campground")
 const {cloudinary} = require("../cloudinary")
+const mapTilerClient = require("@maptiler/client")
+mapTilerClient.config.apiKey = process.env.MAPTILER_API_KEY
+
 
 module.exports.index = async(req,res,next)=>{
     const campgrounds = await Campground.find({})
@@ -11,9 +14,24 @@ module.exports.newForm = (req,res)=>{
 }
 
 module.exports.createCampground = async(req,res,next)=>{
+    const geoData = await mapTilerClient.geocoding.forward(req.body.location, { limit: 1 });
+    
+    // console.log(geoData)
+
+    if (!geoData.features?.length) {
+        req.flash('error', 'Could not geocode that location. Please try again and enter a valid location.');
+        return res.redirect('/campgrounds/new');
+    }
+
+
     const campground = new Campground(req.body)
+
+    campground.geometry = geoData.features[0].geometry
+    campground.location = geoData.features[0].place_name
+
     campground.images = req.files.map((f)=>({url:f.path,filename:f.filename}))
     campground.author = req.user._id
+    
     await campground.save()
     req.flash("success","Successfully made a new campground!")
     res.redirect(`/campgrounds/${campground._id}`)    
@@ -49,7 +67,18 @@ module.exports.editCampground = async(req,res,next)=>{
         throw new ExpressError("Invalid Campground Data",400)
     }
     const {id} = req.params
+
+    const geoData = await mapTilerClient.geocoding.forward(req.body.location, { limit: 1 });
+    if (!geoData.features?.length) {
+        req.flash('error', 'Could not geocode that location. Please try again and enter a valid location.');
+        return res.redirect(`/campgrounds/${id}/edit`);
+    }
+
     const campground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true})
+    
+    campground.geometry = geoData.features[0].geometry;
+    campground.location = geoData.features[0].place_name;
+    
     const imgs = req.files.map((f)=>({url:f.path,filename:f.filename}))
     campground.images.push(...imgs)
     await campground.save()

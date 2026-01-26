@@ -9,7 +9,7 @@
                             <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
                                 <img src="<%= img.url %>" class="d-block w-100" alt="campground image">
                             </div>
-                            <% }) %>
+                        <% }) %>
                     <% } else { %>
                         <div class="carousel-item active">
                             <img src="/images/placeholder.png" class="d-block w-100" alt="placeholder image">
@@ -28,7 +28,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                    <% } %>
+                <% } %>
             </div>
             <div class="card mb-3">
                 <div class="card-body">
@@ -54,10 +54,11 @@
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
-                    <% } %>
+                <% } %>
             </div>
         </div>
         <div class="col-6">
+            <div id="map"></div>
             <% if(currentUser) { %>
                 <h2>Leave a Review</h2>
                 <form action="/campgrounds/<%=campground._id%>/reviews" method="post" class="mb-2 validated-form"
@@ -87,28 +88,34 @@
                     </div>
                     <button class="btn btn-success">Submit</button>
                 </form>
-                <% } %>
+            <% } %>
 
-                    <% for(let review of campground.reviews) { %>
-                        <div class="card mb-3">
-                            <div class="mb-3 card-body">
-                                <h5 class="card-title">
-                                    <%= review.author.username %>
-                                </h5>
-                                <p class="starability-result" data-rating="<%= review.rating%>">
-                                    Rated : <%= review.rating %> stars
-                                </p>
-                                <p class="card-text">Review : <%= review.body %>
-                                </p>
-                                <% if(currentUser && review.author.equals(currentUser._id)) { %>
-                                    <form
-                                        action="/campgrounds/<%= campground.id%>/reviews/<%= review.id %>?_method=DELETE"
-                                        method="post">
-                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
-                                    <% } %>
-                            </div>
-                        </div>
+            <% for(let review of campground.reviews) { %>
+                <div class="card mb-3">
+                    <div class="mb-3 card-body">
+                        <h5 class="card-title">
+                            <%= review.author.username %>
+                        </h5>
+                        <p class="starability-result" data-rating="<%= review.rating%>">
+                            Rated : <%= review.rating %> stars
+                        </p>
+                        <p class="card-text">Review : <%= review.body %>
+                        </p>
+                        <% if(currentUser && review.author.equals(currentUser._id)) { %>
+                            <form
+                                action="/campgrounds/<%= campground.id%>/reviews/<%= review.id %>?_method=DELETE"
+                                method="post">
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                         <% } %>
+                    </div>
+                </div>
+            <% } %>
         </div>
     </div>
+
+    <%-"<script>"%>
+        const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+        const campground = <%- JSON.stringify(campground) %>;
+    <%-"</script>"%>
+    <script src="/javascripts/showPageMap.js"></script>
