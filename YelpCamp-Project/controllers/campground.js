@@ -1,12 +1,29 @@
 const Campground = require("../models/campground")
 const {cloudinary} = require("../cloudinary")
+const ExpressError = require("../utils/ExpressError")
 const mapTilerClient = require("@maptiler/client")
 mapTilerClient.config.apiKey = process.env.MAPTILER_API_KEY
 
 
-module.exports.index = async(req,res,next)=>{
-    const campgrounds = await Campground.find({})
-    res.render("campgrounds/index",{campgrounds})
+module.exports.index = async (req, res, next) => {
+    let query = {};
+    if (req.query.search) {
+        query = { title: { $regex: req.query.search, $options: 'i' } };
+    }
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
+    
+    // Extract everything except 'page' from req.query so we can append them to pagination links
+    const { page: ignoredPage, ...restQuery } = req.query;
+    const queryParams = new URLSearchParams(restQuery).toString();
+
+    const campgrounds = await Campground.paginate(query, {
+        page,
+        limit,
+        sort: { _id: -1 } // newest first
+    });
+    
+    res.render("campgrounds/index", { campgrounds, queryParams, searchQuery: req.query.search });
 }
 
 module.exports.newForm = (req,res)=>{
@@ -74,7 +91,7 @@ module.exports.editCampground = async(req,res,next)=>{
         return res.redirect(`/campgrounds/${id}/edit`);
     }
 
-    const campground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true})
+    const campground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true,new:true})
     
     campground.geometry = geoData.features[0].geometry;
     campground.location = geoData.features[0].place_name;
@@ -97,4 +114,24 @@ module.exports.deleteCampground = async(req,res,next)=>{
     await Campground.findByIdAndDelete(id)
     req.flash("success","Successfully deleted campground!")
     res.redirect("/campgrounds")
+}
+
+module.exports.toggleLike = async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    if (!campground) {
+        req.flash('error', 'Cannot find that campground!');
+        return res.redirect('/campgrounds');
+    }
+
+    const foundUserLike = campground.likes.some(user => user.equals(req.user._id));
+    if (foundUserLike) {
+        // user already liked, remove like
+        campground.likes.pull(req.user._id);
+    } else {
+        // user hasn't liked, add like
+        campground.likes.push(req.user._id);
+    }
+
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
 }

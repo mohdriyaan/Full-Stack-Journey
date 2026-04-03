@@ -4,58 +4,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YelpCamp</title>
+  <title>Terra Explore</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/stylesheets/home.css">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/app.css">
+  
   <style>
-    html,
-    body {
-      height: 100%;
+    body, html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+    .hero-bg {
+        background-image: linear-gradient(to bottom, rgba(11, 15, 21, 0.5), rgba(11, 15, 21, 0.9)), url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .glass-masthead {
+        background: rgba(11, 15, 21, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1.5rem 3rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .hero-title {
+        font-size: 5rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #fff, var(--secondary-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+    }
+    .hero-subtitle {
+        font-size: 1.5rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 3rem auto;
+        font-weight: 300;
+    }
+    .btn-hero {
+        padding: 1rem 3rem;
+        font-size: 1.25rem;
+        border-radius: 50px;
+        letter-spacing: 1px;
     }
   </style>
 </head>
 
-<body class="d-flex h-100 text-center text-white bg-dark">
+<body>
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-
-    <header class="mb-auto">
-      <div class="d-flex justify-content-between align-items-center">
-        <h3 class="mb-0">YelpCamp</h3>
-        <nav class="nav nav-masthead">
-          <a class="nav-link active" href="#">Home</a>
-          <a class="nav-link" href="/campgrounds">Campgrounds</a>
-
-          <% if(!currentUser) { %>
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/register">Register</a>
-          <% } else { %>
-            <a class="nav-link" href="/logout">Logout</a>
-          <% } %>
-        </nav>
+  <div class="hero-bg">
+    <header class="glass-masthead" data-aos="fade-down" data-aos-duration="1000">
+      <div>
+        <h3 class="mb-0 text-white" style="font-family: 'Outfit'; font-weight: 800; letter-spacing: 2px;">TerraExplore <span style="color: var(--primary-color);">.</span></h3>
       </div>
+      <nav class="nav">
+        <a class="nav-link text-white fw-bold active" href="#">Home</a>
+        <a class="nav-link text-white-50" href="/campgrounds">Discover</a>
+
+        <% if(!currentUser) { %>
+          <a class="nav-link text-white-50" href="/login">Login</a>
+          <a class="nav-link text-white-50 border border-secondary rounded-pill px-3 ms-2" href="/register">Join</a>
+        <% } else { %>
+          <a class="nav-link text-white-50 bg-danger rounded-pill px-3 ms-2" href="/logout">Logout</a>
+        <% } %>
+      </nav>
     </header>
 
-    <main class="px-3 my-auto">
-      <h1>YelpCamp</h1>
-      <p class="lead">
-        Welcome to YelpCamp! <br>
-        Jump right in and explore our many campgrounds. <br>
-        Feel free to share some of your own and comment on others!
+    <main class="d-flex flex-column justify-content-center align-items-center flex-grow-1 text-center px-3" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="200">
+      <h1 class="hero-title">Find Your Wild.</h1>
+      <p class="hero-subtitle">
+        Unplug and reconnect with nature. Explore thousands of premium, community-reviewed campgrounds globally.
       </p>
-      <a href="/campgrounds"
-        class="btn btn-lg btn-light fw-bold border-white">
-        View Campgrounds
+      <a href="/campgrounds" class="btn btn-primary btn-hero shadow-lg">
+        Book Your Escape
       </a>
     </main>
 
-    <footer class="mt-auto text-white-50">
-      <p>&copy; 2026</p>
+    <footer class="mt-auto text-white-50 text-center pb-3" data-aos="fade-up" data-aos-delay="500">
+      <p class="mb-0">&copy; 2026 TerraExplore Platform</p>
     </footer>
-
   </div>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+  </script>
 </body>
 </html>

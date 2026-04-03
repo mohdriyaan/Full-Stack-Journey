@@ -1,9 +1,153 @@
-#cluster-map{
-    width:100%;
-    height:500px;
+:root {
+    /* Emerald Glowing Accents */
+    --primary-color: #10b981;
+    --primary-color-hover: #059669;
+    --secondary-color: #34d399;
+    
+    /* Obsidian Dark Base */
+    --background-color: #0b0f15;
+    --background-gradient: radial-gradient(circle at top left, #141e2a 0%, #0b0f15 100%);
+    --card-surface: rgba(255, 255, 255, 0.04);
+    --card-surface-hover: rgba(255, 255, 255, 0.08);
+    
+    /* Typography */
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --font-heading: 'Outfit', sans-serif;
+    --font-base: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-#map{
+/* Global Scope */
+body {
+    background: var(--background-gradient);
+    background-attachment: fixed;
+    font-family: var(--font-base);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.015em;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color-hover);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Bootstrap Overrides for Deep Dark Mode */
+.text-muted { color: var(--text-muted) !important; }
+.card-title, .card-text, .list-group-item { color: var(--text-primary); }
+
+.list-group-item {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.alert-info, .alert-light {
+    background: var(--card-surface);
+    color: var(--primary-color);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Form Inputs */
+.form-control, .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    backdrop-filter: blur(5px);
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25);
+    border-color: var(--primary-color);
+}
+
+/* Glassmorphism Elements */
+.glass-nav {
+    background: rgba(11, 15, 21, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.card {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    background: var(--card-surface);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: var(--card-surface-hover);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 20px rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Primary Button Glowing Effect */
+.btn-primary, .btn-success {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover, .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    color: #fff;
+}
+
+/* Secondary/Outline Buttons */
+.btn-outline-danger {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+.btn-outline-danger:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+/* Maps */
+#cluster-map {
     width: 100%;
-    height: 300px;
+    height: 500px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#map {
+    width: 100%;
+    height: 350px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Starability Fixes */
+.starability-result {
+    transform: scale(0.95);
+    transform-origin: left;
 }

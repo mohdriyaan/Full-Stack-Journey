@@ -20,4 +20,15 @@ router.route("/login")
 
 router.get("/logout", users.logout)
 
+const catchAsync = require("../utils/catchAsync")
+router.get("/users/:id", catchAsync(users.showProfile))
+
+router.route("/forgot")
+    .get(users.renderForgot)
+    .post(catchAsync(users.forgot))
+
+router.route("/reset/:token")
+    .get(catchAsync(users.renderReset))
+    .post(catchAsync(users.reset))
+
 module.exports = router

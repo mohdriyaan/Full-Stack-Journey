@@ -31,6 +31,10 @@ module.exports.validateCampground = (req,res,next)=>{
 module.exports.isAuthor = async(req,res,next)=>{
     const {id} = req.params
     const campground = await Campground.findById(id)
+    if (!campground) {
+        req.flash("error", "Campground not found!");
+        return res.redirect("/campgrounds");
+    }
     if(!campground.author.equals(req.user._id)){
         req.flash("error","You do not have permission..")
         return res.redirect(`/campgrounds/${campground._id}`)
@@ -51,6 +55,12 @@ module.exports.validateReview = (req,res,next) => {
 module.exports.isReviewAuthor = async(req,res,next)=>{
     const {id,reviewId} = req.params
     const review = await Review.findById(reviewId)
+
+    if(!review){
+        req.flash("error", "Review not found!");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+
     if(!review.author.equals(req.user._id)){
         req.flash("error","You do not have permission..")
         return res.redirect(`/campgrounds/${id}`)
