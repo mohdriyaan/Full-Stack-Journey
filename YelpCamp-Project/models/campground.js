@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const Review = require("./review")
+const { cloudinary } = require("../cloudinary")
 const mongoosePaginate = require("mongoose-paginate-v2")
 
 const imgSchema = mongoose.Schema(
@@ -66,6 +67,11 @@ CampgroundSchema.post("findOneAndDelete", async function (doc) {
         await Review.deleteMany({
             _id: { $in: doc.reviews }
         })
+        if(doc.images && doc.images.length) {
+            for(let img of doc.images) {
+                await cloudinary.uploader.destroy(img.filename);
+            }
+        }
     }
 })
 
