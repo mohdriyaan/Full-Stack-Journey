@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice</title>
+</head>
+
+<body>
+  <button onclick="showCart()">Show Quantity</button>
+  <button onclick="updateCartQuantity(1);showCart()">Add to Cart</button>
+  <button onclick="updateCartQuantity(2);showCart()">+2</button>
+  <button onclick="updateCartQuantity(3);showCart()">+3</button>
+  <button onclick="updateCartQuantity(4);showCart()">+4</button>
+  <button onclick="updateCartQuantity(5);showCart()">+5</button>
+  <button onclick="updateCartQuantity(-1);showCart()">Remove</button>
+  <button onclick="updateCartQuantity(-2);showCart()">-2</button>
+  <button onclick="updateCartQuantity(-3);showCart()">-3</button>
+  <button onclick="localStorage.removeItem(`showQuantity`)">Reset Cart</button>
+  <p></p>
+  <script>
+    let showQuantity = Number(localStorage.getItem("showQuantity")) || 0
+    console.log(showQuantity)
+    function updateCartQuantity(quantity) {
+      if ((showQuantity + quantity) > 10) {
+        alert("The cart is full.")
+        return
+      }
+      if ((showQuantity + quantity) < 0) {
+        alert("Not enough items in the cart")
+        return
+      }
+      showQuantity = showQuantity + quantity
+      localStorage.setItem("showQuantity", showQuantity)
+    }
+    function showCart() {
+      document.querySelector(`p`).innerHTML = `Cart quantity : ${showQuantity}`;  
+    }
+  </script>
+
+</body>
+
+</html>

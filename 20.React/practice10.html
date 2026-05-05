@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays and Loops</title>
+</head>
+<body>
+  <script>
+    function search(arr){
+      for(let i = 0; i<arr.length;i++){
+        if(arr[i]=="search"){
+          return i
+        }
+      }
+      return -1
+    }
+    function findIndex(arr,word){
+      for(let i = 0; i<arr.length; i++){
+        if(arr[i]==word){
+          return i
+        }
+      }
+      return -1
+    }
+    function unique(arr){
+      const uniqueArr = []
+      for(let i = 0; i<arr.length; i++){
+        let findIndexPos = findIndex(arr,arr[i])
+        if(i==findIndexPos){
+          uniqueArr.push(arr[i])
+        }
+      }
+      return uniqueArr
+    }
+    
+    function removeEgg(foods){
+      const result = []
+      let count = 0
+      for(let i = foods.length-1; i>=0; i--){
+        if(foods[i]=="egg"){
+          count++
+        }
+        if(foods[i]!=="egg"||count>2){
+          result.push(foods[i])
+        }
+      }
+      return result
+    }
+    console.log(search(["not","found","searc","good","search"]))
+    console.log(findIndex(["green","red","red","green","blue"],"green"))
+    console.log(removeEgg(["egg","apple","egg","egg","ham"]))
+
+    for(let i = 1; i<=20; i++){
+      if(i%3==0&&i%5==0){
+        console.log("FizzBuzz")
+      }else if(i%3==0){
+        console.log("Fizz")
+      }else if(i%5==0){
+        console.log("Buzz")
+      }else{
+        console.log(i)
+      }
+    }
+
+    console.log(unique(["green","red","blue","red"]))
+    console.log(unique(["red","green","green","red"]))
+  </script>
+</body>
+</html>

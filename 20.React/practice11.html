@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Functions</title>
+</head>
+
+<body>
+  <button class="start" onclick="finishedTimeout()">Start</button>
+  <button class="cart-btn" onclick="added()">Add to cart</button>
+  <p class="added"></p>
+  <button class="add-btn" onclick="messages+=1">Add</button>
+  <button class="remove-btn" onclick="messages-=1">Remove</button>
+  <script>
+    const add = function () {
+      console.log(2 + 3)
+    }
+    function runTwice(fun) {
+      fun()
+      fun()
+    }
+    runTwice(add)
+    function finishedTimeout() {
+      setTimeout(function () {
+        document.querySelector(".start").innerHTML = "Finished!"
+      }, 1000)
+      document.querySelector(".start").innerHTML = "Loading..."
+    }
+    let intervalId;
+    let refresh = false
+    function added() {
+      document.querySelector(".added").innerHTML = "Added"
+      if (!refresh) {
+        intervalId =  setTimeout(function () {
+          document.querySelector(".added").innerHTML = ""
+        }, 2000)
+        refresh = true
+      } else {
+        clearTimeout(intervalId)
+        refresh = false
+        added()
+        // clearTimeout(intervalId)
+        // refresh = false
+      }
+    }
+
+    let messages = 2
+    function messageApp(){
+      setInterval(function(){
+        document.title = `App`
+      },1000)
+
+      setInterval(function(){
+        if(messages<=0){
+          document.title = "App"
+        }else{
+          document.title = `(${messages}) New messages`
+        }
+      },2000)
+    }
+
+    messageApp()
+    
+
+  </script>
+</body>
+
+</html>
