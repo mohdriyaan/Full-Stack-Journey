@@ -5,9 +5,9 @@ class Cart {
   timeoutIds;
   #localStorageKey; // private property
 
-  constructor(localStorageKey){
-    this.#localStorageKey = localStorageKey; 
-    this.#loadFromStorage() ; 
+  constructor(localStorageKey) {
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   }
 
   #loadFromStorage() {
@@ -40,6 +40,11 @@ class Cart {
         deliveryOptionId: "1"
       })
     }
+
+    if (quantityElement) {
+      this.renderAdded(productId)
+    }
+
     this.saveToStorage()
   }
 
@@ -94,15 +99,15 @@ class Cart {
 
     added.classList.add("style-added")
 
-    if (timeoutIds) {
-      clearTimeout(timeoutIds)
+    if (this.timeoutIds) {
+      clearTimeout(this.timeoutIds)
     }
 
     const timeoutId = setTimeout(() => {
       added.classList.remove("style-added")
     }, 2000)
 
-    timeoutIds = timeoutId
+    this.timeoutIds = timeoutId
   }
 
   updateQuantity(productId, newQuantity) {
@@ -124,10 +129,22 @@ class Cart {
   }
 }
 
-const cart = new Cart("cart-oops")
-const businessCart = new Cart("cart-business")
+export async function loadCartFetch() {
+  const response = await fetch("https://supersimplebackend.dev/cart")
+  const cartData = await response.json()
+  cart.cartItems = cartData
+  cart.saveToStorage()
+}
 
-console.log(cart)
-console.log(businessCart)
+// Extra feature: make the cart empty after creating an order.
+
+export const cart = new Cart("cart-oops")
+
+export function resetCart() {
+  cart.cartItems = [];
+  cart.saveToStorage();
+}
+
+export default cart;
 
 
