@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React States And Event Handlers</title>
+  <style>
+    .click-btn,
+    .auto-btn,
+    .reset-btn {
+      background-color: rgb(25, 135, 84);
+      color: white;
+      border: none;
+      margin: 10px;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(222, 222, 222);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="js-container"></div>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <script type="text/babel">
+
+    function CounterButton({ count, setCount }) {
+
+      const [autoStatus, setAutoStatus] = React.useState(false)
+
+      function click() {
+        setCount(
+          prevCount => prevCount + 1
+        )
+      }
+
+      function reset() {
+        setCount(0)
+      }
+
+      const autoBtn = React.useRef(null)
+      const timeoutIdRef = React.useRef(null)
+
+      function auto() {
+        if (!autoStatus) {
+          setAutoStatus(true)
+          timeoutIdRef.current = setInterval(() => {
+            autoBtn.current.click()
+          }, 1000)
+        } else {
+          setAutoStatus(false)
+          clearInterval(timeoutIdRef.current)
+        }
+
+      }
+
+      return (
+        <div className="btn-container">
+          <button
+            onClick={click}
+            ref={autoBtn}
+            className="click-btn">
+            Clicked {count} {count === 1 ? "time" : "times"}
+          </button>
+          <button onClick={reset} className="reset-btn">Reset</button>
+          <button onClick={auto} className="auto-btn">Auto Click</button>
+        </div>
+      )
+    }
+
+    // function ResetButton({setCount}){
+    //   function reset(){
+    //     setCount(
+    //       resetCount=>resetCount=0
+    //     )
+    //   }
+    //   return(
+    //     <button onClick={reset}>Reset</button>
+    //   )
+    // }
+
+    function App() {
+      let [count, setCount] = React.useState(0)
+      return (
+        <>
+          <CounterButton count={count} setCount={setCount} />
+        </>
+      )
+    }
+
+
+    const container = document.querySelector(".js-container")
+    ReactDOM.createRoot(container).render(<App />)
+  </script>
+</body>
+
+</html>
